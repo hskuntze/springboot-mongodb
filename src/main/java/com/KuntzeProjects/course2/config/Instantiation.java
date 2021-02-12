@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.KuntzeProjects.course2.domain.Post;
 import com.KuntzeProjects.course2.domain.User;
+import com.KuntzeProjects.course2.dto.AuthorDTO;
 import com.KuntzeProjects.course2.repository.PostRepository;
 import com.KuntzeProjects.course2.repository.UserRepository;
 
@@ -35,11 +36,12 @@ public class Instantiation implements CommandLineRunner{
 		User u2 = new User(null, "Alex Green", "alex@gmail.com");
 		User u3 = new User(null, "Bob Grey", "bob@gmail.com");
 		
-		Post p1 = new Post(null, sdf.parse("09/02/2019"), "Lorem ipsum", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", u1);	
-		Post p2 = new Post(null, sdf.parse("19/09/2020"), "Dolor", "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.", u3);
-		Post p3 = new Post(null, sdf.parse("28/01/2020"), "Excepteur", "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", u1);
-		
 		userRepository.saveAll(Arrays.asList(u1,u2,u3));
+		
+		Post p1 = new Post(null, sdf.parse("09/02/2019"), "Lorem ipsum", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", new AuthorDTO(u1));	
+		Post p2 = new Post(null, sdf.parse("19/09/2020"), "Dolor", "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.", new AuthorDTO(u3));
+		Post p3 = new Post(null, sdf.parse("28/01/2020"), "Excepteur", "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", new AuthorDTO(u1));
+		
 		postRepository.saveAll(Arrays.asList(p1,p2,p3));
 	}
 
